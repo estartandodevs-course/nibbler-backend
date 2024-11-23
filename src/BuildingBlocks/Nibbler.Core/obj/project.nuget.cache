@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "rvHy74SKG94DT/HUjaxg19Vm/fExUGkcloEdsEvbds8xqsoNwb1R5Ifsxftx9IVl7ycD4PYRr8l0mT22JwNKvA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\rd_fo\\OneDrive\\Documents\\TCC Estartandodevs\\Nibbler-Annotations\\src\\BuildingBlocks\\Nibbler.Core\\Nibbler.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rd_fo\\.nuget\\packages\\fluentvalidation\\11.9.1\\fluentvalidation.11.9.1.nupkg.sha512",
+    "C:\\Users\\rd_fo\\.nuget\\packages\\mediatr\\8.1.0\\mediatr.8.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
