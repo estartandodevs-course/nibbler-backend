@@ -1,0 +1,6 @@
+@Nibbler.WebAPI_HostAddress = http://localhost:5030
+
+GET {{Nibbler.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
