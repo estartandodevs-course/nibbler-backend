@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Commands\Contracts\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Commands\Contracts\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Commands\Contracts\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\BuildingBlocks\Nibbler.Core\Nibbler.Core.csproj" />
+      <ProjectReference Include="..\..\Usuarios\Nibbler.Usuario.Domain\Nibbler.Usuario.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

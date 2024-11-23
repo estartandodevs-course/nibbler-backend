@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Nibbler.Diario.app</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Class1.cs" />
+      <Compile Remove="Queries\IDiarioQueries.cs" />
+      <Compile Remove="InputModels\DiarioInputModel.cs" />
+      <Compile Remove="InputModels\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\BuildingBlocks\Nibbler.Core\Nibbler.Core.csproj" />
+      <ProjectReference Include="..\..\BuildingBlocks\Nibbler.WebAPI.Core\Nibbler.WebAPI.Core.csproj" />
+      <ProjectReference Include="..\..\Usuarios\Nibbler.Usuario.App\Nibbler.Usuario.App.csproj" />
+      <ProjectReference Include="..\..\Usuarios\Nibbler.Usuario.Domain\Nibbler.Usuario.Domain.csproj" />
+      <ProjectReference Include="..\Nibbler.Diario.Domain\Nibbler.Diario.Domain.csproj" />
+      <ProjectReference Include="..\Nibbler.Diario.Infra\Nibbler.Diario.Infra.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Dapper" Version="2.1.35" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="InputModels\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="InputModels\**" />
+    </ItemGroup>
+
+</Project>
