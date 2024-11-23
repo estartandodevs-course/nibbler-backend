@@ -5,19 +5,11 @@ namespace Nibbler.Core.DomainObjects;
 
 public abstract class Aggregate
 {
-    /// <summary>
-    /// Gera um hash através do id 
-    /// </summary>
     public virtual string ObterHash()
     {
         return GerarHashMd5(Guid.NewGuid().ToString());
     }
-
-    /// <summary>
-    /// Utilizar para gerar um hash de valor's personalizados
-    /// </summary>
-    /// <param name="values">valores concatenados em string</param>
-    /// <returns></returns>
+    
     protected string ObterHash(string valor)
     {
         return GerarHashMd5(valor);
