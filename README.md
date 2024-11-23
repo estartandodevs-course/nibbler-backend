@@ -143,6 +143,11 @@ dotnet run --project src/WebAPI/Nibbler.WebAPI
 
 -Discord: [Canal Nibbler](https://discord.gg/dcXhvZcg)
 
----
 
-**Nota**: Projeto em desenvolvimento ativo. Novas funcionalidades são adicionadas regularmente.
+## 📝 Nota
+
+- Projeto em desenvolvimento ativo. Novas funcionalidades são adicionadas regularmente.
+  
+<div align="center">
+Made with ❤️ by Estartando Devs
+</div>
