@@ -6,9 +6,9 @@ Sistema de diário pessoal digital com gerenciamento de tarefas, desenvolvido em
 ## 🚀 Funcionalidades Principais
 
 ### 👤 Usuários
-- Cadastro e autenticação
-- Perfil personalizado
-- Upload de fotos
+- [ ] Cadastro e autenticação
+- [ ] Perfil personalizado
+- [ ] Upload de fotos
 
 ### 📝 Diário (Almost Finished) - To Do
 - [x] Criação e edição de entradas
@@ -137,11 +137,6 @@ dotnet restore
 # Execute
 dotnet run --project src/WebAPI/Nibbler.WebAPI
 ```
-
-
-## 📞 Contato
-
--Discord: [Canal Nibbler](https://discord.gg/dcXhvZcg)
 
 
 ## 📝 Nota
