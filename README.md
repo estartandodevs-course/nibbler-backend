@@ -77,12 +77,11 @@ A API é documentada usando Swagger. Para acessar:
 
 1. Execute o projeto
 2. Acesse: `http://localhost:[porta]/swagger`
-
-## 🏗️ Arquitetura
+## 🚥 Abordagens
+- Domain-Driven Design (DDD)
 
 ### Padrões Utilizados
 - Clean Architecture
-- Domain-Driven Design (DDD)
 - CQRS
 - Repository Pattern
 - Unit of Work
