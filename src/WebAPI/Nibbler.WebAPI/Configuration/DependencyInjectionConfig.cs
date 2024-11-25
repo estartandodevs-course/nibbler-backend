@@ -1,6 +1,7 @@
 using FluentValidation.Results;
 using MediatR;
 using Nibbler.Core.Mediator;
+using Nibbler.Core.Messages;
 using Nibbler.Diario.app.Commands;
 using Nibbler.Diario.App.Commands;
 using Nibbler.Diario.app.Events;
@@ -24,6 +25,7 @@ public static class DependencyInjectionConfig
         //Usuario
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         services.AddScoped<IUsuarioQueries, UsuarioQueries>();
+        
         //Diario
         services.AddScoped<IDiarioRepository, DiarioRepository>();
         services.AddScoped<IDiarioQueries, DiarioQueries>();
@@ -40,6 +42,8 @@ public static class DependencyInjectionConfig
         services.AddScoped<IRequestHandler<ExcluirEtiquetaCommand, ValidationResult>, DiarioCommandHandler>();
         //Contexto de Usuários
         services.AddScoped<IRequestHandler<AdicionarUsuarioCommand, ValidationResult>, UsuariosCommandHandler>();
+        services.AddScoped<INotificationHandler<UsuarioAtualizadoEvent>,UsuarioAtualizadoEventHandler>();
+
         //Contexto de Diario
         services.AddScoped<INotificationHandler<DiarioCriadoEvent>, DiarioEventHandler>();
         services.AddScoped<IRequestHandler<AdicionarDiarioCommand, ValidationResult>, DiarioCommandHandler>();

@@ -22,7 +22,14 @@ public class DiarioRepository : IDiarioRepository
     {
         _context.Diarios.Add(diario);
     }
-
+    public void AtualizarU(Domain.Usuario usuario)
+    {
+        _context.Diarios
+            .Where(c => c.Usuario.Id == usuario.Id)
+            .ExecuteUpdate(set => set
+                .SetProperty(c => c.Usuario.Nome, usuario.Nome)
+                .SetProperty(c => c.Usuario.CaminhoFoto, usuario.CaminhoFoto));
+    }
     public async Task<IEnumerable<Etiqueta>> ObterEtiquetasPorDiario(Guid diarioId)
     {
         var diario = await _context.Diarios
