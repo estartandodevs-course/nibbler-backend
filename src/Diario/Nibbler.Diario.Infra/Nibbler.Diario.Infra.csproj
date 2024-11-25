@@ -12,12 +12,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
       <PackageReference Include="Moq" Version="4.20.70" />
     </ItemGroup>
 
@@ -29,6 +29,8 @@
       <Compile Remove="Migrations\20241118042618_InitialCreate.cs" />
       <Compile Remove="Migrations\20241118042618_InitialCreate.Designer.cs" />
       <Compile Remove="Mappings\UsuarioMapping.cs" />
+      <Compile Remove="Migrations\20241118044256_InitialCreate.cs" />
+      <Compile Remove="Migrations\20241118044256_InitialCreate.Designer.cs" />
     </ItemGroup>
 
 </Project>

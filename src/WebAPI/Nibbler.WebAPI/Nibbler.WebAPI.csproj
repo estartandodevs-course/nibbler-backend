@@ -7,18 +7,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.8" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.0" />
 
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.7" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
     <PropertyGroup>
@@ -26,6 +26,7 @@
         <NoWarn>$(NoWarn);1591</NoWarn>
     </PropertyGroup>
     <ItemGroup>
+      <ProjectReference Include="..\..\Autenticacao\Nibbler.Autenticacao.App\Nibbler.Autenticacao.App.csproj" />
       <ProjectReference Include="..\..\BuildingBlocks\Nibbler.WebAPI.Core\Nibbler.WebAPI.Core.csproj" />
       <ProjectReference Include="..\..\Diario\Nibbler.Diario.App\Nibbler.Diario.App.csproj" />
       <ProjectReference Include="..\..\Diario\Nibbler.Diario.Infra\Nibbler.Diario.Infra.csproj" />
