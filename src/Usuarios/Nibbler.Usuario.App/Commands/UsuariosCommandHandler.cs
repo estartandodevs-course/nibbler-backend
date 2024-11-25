@@ -30,6 +30,27 @@ public class UsuariosCommandHandler : CommandHandler,
 
         return await PersistirDados(_usuarioRepository.UnitOfWork);
     }
+    public async Task<ValidationResult> Handle(AtualizarUsuarioCommand request, CancellationToken cancellationToken)
+    {
+        var usuario = await _usuarioRepository.ObterPorId(request.UsuarioId);
+        if (usuario is null)
+        {
+            AdicionarErro("Usuário não encontrado!");
+            return ValidationResult;
+        }
+
+        usuario.AtribuirNome(request.Nome);
+        usuario.AtribuirFoto(request.Foto);
+        usuario.AtribuirDataDeNascimento(request.DataDeNascimento);
+
+        _usuarioRepository.Atualizar(usuario);
+
+        var evento = new UsuarioAtualizadoEvent(usuario.Id,usuario.Nome,usuario.Foto);
+
+        usuario.AdicionarEvento(evento);
+    
+        return await PersistirDados(_usuarioRepository.UnitOfWork);
+    }
     
     public void Dispose()
     {
