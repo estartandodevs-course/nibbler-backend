@@ -1,7 +1,3 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Nibbler.Diario.Infra.Data;
@@ -12,7 +8,7 @@ namespace Nibbler.WebAPI.Configuration;
 public static class ApiConfig
 {
     private const string ConexaoBancoDeDados = "NibblerConnection";
-    private const string PermissoesDeOrigem = "_premissoesDeOrigem";
+    private const string PermissoesDeOrigem = "_permissoesDeOrigem";
 
     public static void AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
     {
