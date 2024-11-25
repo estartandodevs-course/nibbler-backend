@@ -7,34 +7,30 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="Data\" />
       <Folder Include="Migrations\" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="Repositories.cs" />
-      <Compile Remove="Migrations\20241105144028_InitialCreate.cs" />
-      <Compile Remove="Migrations\20241105144028_InitialCreate.Designer.cs" />
-      <Compile Remove="Migrations\20241105232836_Init.cs" />
-      <Compile Remove="Migrations\20241105232836_Init.Designer.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
-      <PackageReference Include="Moq" Version="4.20.70" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\BuildingBlocks\Nibbler.Core\Nibbler.Core.csproj" />
-      <ProjectReference Include="..\Nibbler.Usuario.Domain\Nibbler.Usuario.Domain.csproj" />
+      <Compile Remove="Migrations\src\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\BuildingBlocks\Nibbler.Core\Nibbler.Core.csproj" />
+      <EmbeddedResource Remove="Migrations\src\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Migrations\src\**" />
     </ItemGroup>
 
 </Project>

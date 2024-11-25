@@ -213,7 +213,7 @@ public class DiarioCommandHandler : CommandHandler,
             return ValidationResult;
         }
 
-        var etiqueta = new Domain.Etiqueta(request.Nome);
+        var etiqueta = new Etiqueta(request.Nome);
         diario.AdicionarEtiqueta(etiqueta);
 
         _diarioRepository.Atualizar(diario);
@@ -225,7 +225,7 @@ public class DiarioCommandHandler : CommandHandler,
     {
         if (!request.EstaValido()) return request.ValidationResult;
 
-        var etiqueta = new Domain.Etiqueta(request.Nome);
+        var etiqueta = new Etiqueta(request.Nome);
         _diarioRepository.Adicionar(etiqueta);
 
         return await PersistirDados(_diarioRepository.UnitOfWork);

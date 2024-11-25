@@ -1,19 +1,18 @@
 using Nibbler.Core.DomainObjects;
-namespace Nibbler.Diario.Domain;
+using Nibbler.Diario.Domain;
 
 public class Etiqueta : Entity
 {
     public string Nome { get; private set; }
     public DateTime DataDeCadastro { get; private set; }
     
-    // Propriedade de navegação para o relacionamento many-to-many
-    public ICollection<Domain.Diario> Diarios { get; private set; }
+    public ICollection<Diario> Diarios { get; private set; }
 
-    public Etiqueta(string nome)
+    public Etiqueta(string nome, string descricao = null)
     {
         Nome = nome;
         DataDeCadastro = DateTime.UtcNow;
-        Diarios = new List<Domain.Diario>();
+        Diarios = new List<Diario>();
     }
 
     // Construtor para o EF

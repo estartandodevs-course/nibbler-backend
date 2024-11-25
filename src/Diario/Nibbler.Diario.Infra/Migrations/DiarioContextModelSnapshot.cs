@@ -17,7 +17,7 @@ namespace Nibbler.Diario.Infra.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -35,6 +35,27 @@ namespace Nibbler.Diario.Infra.Migrations
                     b.HasIndex("EtiquetaId");
 
                     b.ToTable("DiarioEtiqueta");
+                });
+
+            modelBuilder.Entity("Etiqueta", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataDeAlteracao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataDeCadastro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Etiquetas", (string)null);
                 });
 
             modelBuilder.Entity("Nibbler.Diario.Domain.Diario", b =>
@@ -104,27 +125,6 @@ namespace Nibbler.Diario.Infra.Migrations
                     b.ToTable("Entradas", (string)null);
                 });
 
-            modelBuilder.Entity("Nibbler.Diario.Domain.Etiqueta", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DataDeAlteracao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DataDeCadastro")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Etiquetas", (string)null);
-                });
-
             modelBuilder.Entity("Nibbler.Diario.Domain.Reflexao", b =>
                 {
                     b.Property<Guid>("Id")
@@ -188,7 +188,7 @@ namespace Nibbler.Diario.Infra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Nibbler.Diario.Domain.Etiqueta", null)
+                    b.HasOne("Etiqueta", null)
                         .WithMany()
                         .HasForeignKey("EtiquetaId")
                         .OnDelete(DeleteBehavior.Cascade)

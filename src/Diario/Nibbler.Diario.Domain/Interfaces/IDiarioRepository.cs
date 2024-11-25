@@ -34,4 +34,6 @@ public interface IDiarioRepository : IDisposable
 
     // Métodos de Usuário
     Task<Domain.Usuario> ObterUsuarioDiarioPorId(Guid id);
+    void Atualizar(Usuario etiqueta);
+    void AtualizarU(Usuario usuario);
 }

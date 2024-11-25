@@ -12,15 +12,15 @@ using Nibbler.Usuario.Infra.Data;
 namespace Nibbler.Usuario.Infra.Migrations
 {
     [DbContext(typeof(UsuarioContext))]
-    [Migration("20241108154758_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241125031514_AdicionandoUsuario")]
+    partial class AdicionandoUsuario
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
