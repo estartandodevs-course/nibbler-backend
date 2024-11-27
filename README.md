@@ -6,9 +6,9 @@ Sistema de diário pessoal digital com gerenciamento de tarefas, desenvolvido em
 ## 🚀 Funcionalidades Principais
 
 ### 👤 Usuários
-- [ ] Cadastro e autenticação
-- [ ] Perfil personalizado
-- [ ] Upload de fotos
+- [x] Cadastro e autenticação
+- [x] Perfil personalizado
+- [x] Upload de fotos
 
 ### 📝 Diário (Almost Finished) - To Do
 - [x] Criação e edição de entradas
