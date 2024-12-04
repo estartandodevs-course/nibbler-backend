@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  nibbler-api:
+    build:
+      context: .
+      dockerfile: src/WebAPI/Nibbler.WebAPI/Dockerfile
+    ports:
+      - "5030:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081 
+      - ConnectionStrings__NibblerConnection=Server=sqlserver;Database=NibblerProject;User Id=sa;Password=MinhaSenhaForte$;TrustServerCertificate=True;MultipleActiveResultSets=True;Encrypt=False;
+      - ConnectionStrings__IdentityConnection=Server=sqlserver;Database=NibblerIdentityDB;User Id=sa;Password=MinhaSenhaForte$;TrustServerCertificate=True;MultipleActiveResultSets=True;Encrypt=False;
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    networks:
+      - nibbler-network
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=MinhaSenhaForte$
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "MinhaSenhaForte$" -Q "SELECT 1" -b -o /dev/null
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    networks:
+      - nibbler-network
+
+networks:
+  nibbler-network:
+    driver: bridge
+
+volumes:
+  sqlserver-data:
