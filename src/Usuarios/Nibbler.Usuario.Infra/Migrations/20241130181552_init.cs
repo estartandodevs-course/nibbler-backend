@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace Nibbler.Diario.Infra.Migrations
+namespace Nibbler.Usuario.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class AdicionadoRelacionamentoDiarioUsuario : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

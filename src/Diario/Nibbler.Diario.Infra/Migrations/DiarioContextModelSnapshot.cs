@@ -96,6 +96,30 @@ namespace Nibbler.Diario.Infra.Migrations
                     b.ToTable("Diarios", (string)null);
                 });
 
+            modelBuilder.Entity("Nibbler.Diario.Domain.Emocao", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataDeAlteracao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataDeCadastro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataRegistro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Emocoes", (string)null);
+                });
+
             modelBuilder.Entity("Nibbler.Diario.Domain.Entrada", b =>
                 {
                     b.Property<Guid>("Id")
@@ -142,11 +166,10 @@ namespace Nibbler.Diario.Infra.Migrations
                     b.Property<DateTime>("DataDeCadastro")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("DiarioId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("DiarioId")
+                    b.Property<Guid?>("EmocaoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UsuarioId")
@@ -156,7 +179,7 @@ namespace Nibbler.Diario.Infra.Migrations
 
                     b.HasIndex("DiarioId");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("EmocaoId");
 
                     b.ToTable("Reflexoes", (string)null);
                 });
@@ -221,23 +244,24 @@ namespace Nibbler.Diario.Infra.Migrations
                 {
                     b.HasOne("Nibbler.Diario.Domain.Diario", null)
                         .WithMany("Reflexoes")
-                        .HasForeignKey("DiarioId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("DiarioId");
 
-                    b.HasOne("Nibbler.Diario.Domain.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                    b.HasOne("Nibbler.Diario.Domain.Emocao", "Emocao")
+                        .WithMany("Reflexoes")
+                        .HasForeignKey("EmocaoId");
 
-                    b.Navigation("Usuario");
+                    b.Navigation("Emocao");
                 });
 
             modelBuilder.Entity("Nibbler.Diario.Domain.Diario", b =>
                 {
                     b.Navigation("Entradas");
 
+                    b.Navigation("Reflexoes");
+                });
+
+            modelBuilder.Entity("Nibbler.Diario.Domain.Emocao", b =>
+                {
                     b.Navigation("Reflexoes");
                 });
 #pragma warning restore 612, 618
