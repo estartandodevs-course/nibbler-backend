@@ -36,4 +36,20 @@ public interface IDiarioRepository : IDisposable
     Task<Domain.Usuario> ObterUsuarioDiarioPorId(Guid id);
     void Atualizar(Usuario etiqueta);
     void AtualizarU(Usuario usuario);
+    
+    // Métodos para Reflexão
+    void Adicionar(Reflexao reflexao);
+    void Atualizar(Reflexao reflexao);
+    void Excluir(Reflexao reflexao);
+    Task<Reflexao> ObterReflexaoPorId(Guid id);
+    Task<IEnumerable<Reflexao>> ObterReflexoesPorUsuario(Guid usuarioId);
+    Task<IEnumerable<Reflexao>> ObterTodasReflexoes();
+    
+    // Métodos para Emoção
+    void Adicionar(Emocao emocao);
+    void Atualizar(Emocao emocao);
+    void Excluir(Emocao emocao);
+    Task<Emocao> ObterEmocaoPorId(Guid id);
+    Task<IEnumerable<Emocao>> ObterTodasEmocoes();
+    Task<bool> ExisteEmocao(Guid id);
 }
