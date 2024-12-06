@@ -4,18 +4,27 @@ namespace Nibbler.Diario.Domain;
 
 public class Reflexao : Entity
 {
-    public Usuario Usuario { get; private set; }
     public string Conteudo { get; private set; }
     public DateTime DataDeCadastro { get; private set; }
-    public string Descricao { get; private set; }
+    public Guid UsuarioId { get; private set; }
+    public Guid? EmocaoId { get; set; }
 
-    // EF Constructor
+    // Navegações
+    // public virtual Usuario Usuario { get; private set; }
+    public virtual Emocao Emocao { get; private set; }
+
     protected Reflexao() { }
 
-    public Reflexao(Usuario usuario, string conteudo)
+    public Reflexao(Guid usuarioId, string conteudo, Guid? emocaoId = null)
     {
-        Usuario = usuario;
+        UsuarioId = usuarioId;
         Conteudo = conteudo;
+        EmocaoId = emocaoId;
         DataDeCadastro = DateTime.Now;
+    }
+
+    public void AtualizarConteudo(string conteudo)
+    {
+        Conteudo = conteudo;
     }
 }
