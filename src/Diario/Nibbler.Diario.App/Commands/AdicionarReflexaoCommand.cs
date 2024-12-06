@@ -5,13 +5,15 @@ namespace Nibbler.Diario.App.Commands;
 
 public class AdicionarReflexaoCommand : Command
 {
-    public Guid DiarioId { get; private set; }
+    public Guid UsuarioId { get; private set; }
     public string Conteudo { get; private set; }
+    public Guid? EmocaoId { get; private set; }
 
-    public AdicionarReflexaoCommand(Guid diarioId, string conteudo)
+    public AdicionarReflexaoCommand(Guid usuarioId, string conteudo, Guid? emocaoId = null)
     {
-        DiarioId = diarioId;
+        UsuarioId = usuarioId;
         Conteudo = conteudo;
+        EmocaoId = emocaoId;
     }
 
     public override bool EstaValido()
@@ -24,8 +26,8 @@ public class AdicionarReflexaoCommand : Command
     {
         public AdicionarReflexaoValidation()
         {
-            RuleFor(c => c.DiarioId)
-                .NotEqual(Guid.Empty).WithMessage("Id do diário inválido.");
+            RuleFor(c => c.UsuarioId)
+                .NotEqual(Guid.Empty).WithMessage("Id do usuário inválido.");
 
             RuleFor(c => c.Conteudo)
                 .NotEmpty().WithMessage("O conteúdo da reflexão é obrigatório.");
