@@ -3,6 +3,7 @@ using MediatR;
 using Nibbler.Core.Messages;
 using Nibbler.Diario.app.Commands;
 using Nibbler.Diario.app.Events;
+using Nibbler.Diario.Domain;
 using Nibbler.Diario.Domain.Events;
 using Nibbler.Diario.Domain.Interfaces;
 using Nibbler.Usuario.Domain.Interfaces;
@@ -13,6 +14,8 @@ public class DiarioCommandHandler : CommandHandler,
     IRequestHandler<AdicionarDiarioCommand, ValidationResult>,
     IRequestHandler<AtualizarDiarioCommand, ValidationResult>,
     IRequestHandler<AdicionarReflexaoCommand, ValidationResult>,
+    IRequestHandler<AtualizarReflexaoCommand, ValidationResult>,
+    IRequestHandler<ExcluirReflexaoCommand, ValidationResult>,
     IRequestHandler<MarcarComoExcluidoCommand, ValidationResult>,
     IRequestHandler<AdicionarEntradaCommand, ValidationResult>,
     IRequestHandler<AtualizarEntradaCommand, ValidationResult>,
@@ -23,6 +26,11 @@ public class DiarioCommandHandler : CommandHandler,
     IRequestHandler<RemoverEtiquetaDoDiarioCommand, ValidationResult>,
     IRequestHandler<AdicionarEtiquetaAoDiarioCommand, ValidationResult>,
     IRequestHandler<ExcluirEtiquetaCommand, ValidationResult>,
+    IRequestHandler<AdicionarEmocaoCommand, ValidationResult>,
+    IRequestHandler<AtualizarEmocaoCommand, ValidationResult>,
+    IRequestHandler<ExcluirEmocaoCommand, ValidationResult>,
+    IRequestHandler<AssociarEmocaoNaReflexaoCommand, ValidationResult>,
+    IRequestHandler<RemoverEmocaoDaReflexaoCommand, ValidationResult>,
     IDisposable
 {
     private readonly IDiarioRepository _diarioRepository;
@@ -90,18 +98,44 @@ public class DiarioCommandHandler : CommandHandler,
     {
         if (!request.EstaValido()) return request.ValidationResult;
 
-        var diario = await _diarioRepository.ObterPorId(request.DiarioId);
+        var reflexao = new Reflexao(request.UsuarioId, request.Conteudo, request.EmocaoId);
+        
+        _diarioRepository.Adicionar(reflexao);
 
-        if (diario is null)
+        return await PersistirDados(_diarioRepository.UnitOfWork);
+    }
+    
+    public async Task<ValidationResult> Handle(AtualizarReflexaoCommand request, CancellationToken cancellationToken)
+    {
+        if (!request.EstaValido()) return request.ValidationResult;
+
+        var reflexao = await _diarioRepository.ObterReflexaoPorId(request.Id);
+        if (reflexao == null)
         {
-            AdicionarErro("Diário não encontrado!");
+            AdicionarErro("Reflexão não encontrada!");
             return ValidationResult;
         }
 
-        var reflexao = new Domain.Reflexao(diario.Usuario, request.Conteudo);
-        diario.Adicionar(reflexao);
+        reflexao.AtualizarConteudo(request.Conteudo);
+        reflexao.EmocaoId = request.EmocaoId;
 
-        _diarioRepository.Atualizar(diario);
+        _diarioRepository.Atualizar(reflexao);
+
+        return await PersistirDados(_diarioRepository.UnitOfWork);
+    }
+    
+    public async Task<ValidationResult> Handle(ExcluirReflexaoCommand request, CancellationToken cancellationToken)
+    {
+        if (!request.EstaValido()) return request.ValidationResult;
+
+        var reflexao = await _diarioRepository.ObterReflexaoPorId(request.Id);
+        if (reflexao == null)
+        {
+            AdicionarErro("Reflexão não encontrada!");
+            return ValidationResult;
+        }
+
+        _diarioRepository.Excluir(reflexao);
 
         return await PersistirDados(_diarioRepository.UnitOfWork);
     }
@@ -320,6 +354,90 @@ public class DiarioCommandHandler : CommandHandler,
 
         return await PersistirDados(_diarioRepository.UnitOfWork);
     }
+        public async Task<ValidationResult> Handle(AdicionarEmocaoCommand request, CancellationToken cancellationToken)
+    {
+        if (!request.EstaValido()) return request.ValidationResult;
+
+        var emocao = new Emocao(request.Nome);
+        _diarioRepository.Adicionar(emocao);
+
+        return await PersistirDados(_diarioRepository.UnitOfWork);
+    }
+
+    public async Task<ValidationResult> Handle(AtualizarEmocaoCommand request, CancellationToken cancellationToken)
+    {
+        if (!request.EstaValido()) return request.ValidationResult;
+
+        var emocao = await _diarioRepository.ObterEmocaoPorId(request.Id);
+        if (emocao == null)
+        {
+            AdicionarErro("Emoção não encontrada!");
+            return ValidationResult;
+        }
+
+        emocao.AtualizarNome(request.Nome);
+        _diarioRepository.Atualizar(emocao);
+
+        return await PersistirDados(_diarioRepository.UnitOfWork);
+    }
+
+    public async Task<ValidationResult> Handle(ExcluirEmocaoCommand request, CancellationToken cancellationToken)
+    {
+        if (!request.EstaValido()) return request.ValidationResult;
+
+        var emocao = await _diarioRepository.ObterEmocaoPorId(request.Id);
+        if (emocao == null)
+        {
+            AdicionarErro("Emoção não encontrada!");
+            return ValidationResult;
+        }
+
+        _diarioRepository.Excluir(emocao);
+
+        return await PersistirDados(_diarioRepository.UnitOfWork);
+    }
+
+    public async Task<ValidationResult> Handle(AssociarEmocaoNaReflexaoCommand request, CancellationToken cancellationToken)
+    {
+        if (!request.EstaValido()) return request.ValidationResult;
+
+        var reflexao = await _diarioRepository.ObterReflexaoPorId(request.ReflexaoId);
+        if (reflexao == null)
+        {
+            AdicionarErro("Reflexão não encontrada!");
+            return ValidationResult;
+        }
+
+        var emocao = await _diarioRepository.ObterEmocaoPorId(request.EmocaoId);
+        if (emocao == null)
+        {
+            AdicionarErro("Emoção não encontrada!");
+            return ValidationResult;
+        }
+
+        reflexao.EmocaoId = request.EmocaoId;
+        _diarioRepository.Atualizar(reflexao);
+
+        return await PersistirDados(_diarioRepository.UnitOfWork);
+    }
+
+    public async Task<ValidationResult> Handle(RemoverEmocaoDaReflexaoCommand request, CancellationToken cancellationToken)
+    {
+        if (!request.EstaValido()) return request.ValidationResult;
+
+        var reflexao = await _diarioRepository.ObterReflexaoPorId(request.ReflexaoId);
+        if (reflexao == null)
+        {
+            AdicionarErro("Reflexão não encontrada!");
+            return ValidationResult;
+        }
+
+        reflexao.EmocaoId = null;
+        _diarioRepository.Atualizar(reflexao);
+
+        return await PersistirDados(_diarioRepository.UnitOfWork);
+    }
+
 
     public void Dispose()
     {
