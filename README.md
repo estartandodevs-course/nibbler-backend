@@ -12,7 +12,7 @@ Sistema de diário pessoal digital com gerenciamento de tarefas, desenvolvido em
 
 ### 📝 Diário (Almost Finished) - To Do
 - [x] Criação e edição de entradas
-- [ ] Sistema de reflexões - WIP
+- [x] Sistema de reflexões - WIP
 - [x] Categorização por etiquetas
 - [x] Soft delete
 
