@@ -6,11 +6,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Nibbler.Diario.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class AdicionandoDiario : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Emocoes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DataRegistro = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataDeCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataDeAlteracao = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Emocoes", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Etiquetas",
                 columns: table => new
@@ -113,11 +128,11 @@ namespace Nibbler.Diario.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Conteudo = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     DataDeCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DiarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UsuarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EmocaoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DiarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     DataDeAlteracao = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -129,9 +144,9 @@ namespace Nibbler.Diario.Infra.Migrations
                         principalTable: "Diarios",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Reflexoes_Usuario_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "Usuario",
+                        name: "FK_Reflexoes_Emocoes_EmocaoId",
+                        column: x => x.EmocaoId,
+                        principalTable: "Emocoes",
                         principalColumn: "Id");
                 });
 
@@ -156,9 +171,9 @@ namespace Nibbler.Diario.Infra.Migrations
                 column: "DiarioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reflexoes_UsuarioId",
+                name: "IX_Reflexoes_EmocaoId",
                 table: "Reflexoes",
-                column: "UsuarioId");
+                column: "EmocaoId");
         }
 
         /// <inheritdoc />
@@ -178,6 +193,9 @@ namespace Nibbler.Diario.Infra.Migrations
 
             migrationBuilder.DropTable(
                 name: "Diarios");
+
+            migrationBuilder.DropTable(
+                name: "Emocoes");
 
             migrationBuilder.DropTable(
                 name: "Usuario");

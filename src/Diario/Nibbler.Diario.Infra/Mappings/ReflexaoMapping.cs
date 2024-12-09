@@ -2,8 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Nibbler.Diario.Domain;
 
-namespace Nibbler.Diario.Infra.Mappings;
-
 public class ReflexaoMapping : IEntityTypeConfiguration<Reflexao>
 {
     public void Configure(EntityTypeBuilder<Reflexao> builder)
@@ -19,18 +17,14 @@ public class ReflexaoMapping : IEntityTypeConfiguration<Reflexao>
         builder.Property(r => r.DataDeCadastro)
             .IsRequired();
 
-        // Relacionamento com Diário
-        builder.HasOne<Domain.Diario>()
-            .WithMany(d => d.Reflexoes)
-            .HasForeignKey("DiarioId")
-            .OnDelete(DeleteBehavior.NoAction)
+        // Relacionamento com Usuário
+        builder.Property(r => r.UsuarioId)
             .IsRequired();
 
-        // Relacionamento com Usuário
-        builder.HasOne(r => r.Usuario)
-            .WithMany()
-            .HasForeignKey("UsuarioId")
-            .OnDelete(DeleteBehavior.NoAction)
-            .IsRequired();
+        // Relacionamento com Emoção
+        builder.HasOne(r => r.Emocao)
+            .WithMany(e => e.Reflexoes)
+            .HasForeignKey(r => r.EmocaoId)
+            .IsRequired(false);
     }
 }

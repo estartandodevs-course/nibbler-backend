@@ -24,6 +24,7 @@ public class DiarioContext : DbContext, IUnitOfWorks
     public DbSet<Etiqueta> Etiquetas { get; set; }
     public DbSet<Reflexao> Reflexoes { get; set; }
     public DbSet<Entrada> Entradas { get; set; }
+    public DbSet<Emocao> Emocoes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -34,6 +35,7 @@ public class DiarioContext : DbContext, IUnitOfWorks
         modelBuilder.ApplyConfiguration(new EtiquetaMapping());
         modelBuilder.ApplyConfiguration(new ReflexaoMapping());
         modelBuilder.ApplyConfiguration(new EntradaMapping());
+        modelBuilder.ApplyConfiguration(new EmocaoMapping());
 
         base.OnModelCreating(modelBuilder);
     }

@@ -6,6 +6,7 @@ using Nibbler.Diario.app.Commands;
 using Nibbler.Diario.App.Commands;
 using Nibbler.Diario.app.Events;
 using Nibbler.Diario.App.Events;
+using Nibbler.Diario.app.Queries;
 using Nibbler.Diario.Domain.Interfaces;
 using Nibbler.Diario.Infra.Repositories;
 using Nibbler.Usuario.App.Commands;
@@ -53,5 +54,19 @@ public static class DependencyInjectionConfig
         services.AddScoped<IRequestHandler<AdicionarEntradaCommand, ValidationResult>, DiarioCommandHandler>();
         services.AddScoped<IRequestHandler<AtualizarEntradaCommand, ValidationResult>, DiarioCommandHandler>();
         services.AddScoped<IRequestHandler<RemoverEntradaCommand, ValidationResult>, DiarioCommandHandler>();
+        
+        // Reflexao
+        services.AddScoped<IReflexaoQueries, ReflexaoQueries>();
+        services.AddScoped<IRequestHandler<AdicionarReflexaoCommand, ValidationResult>, DiarioCommandHandler>();
+        services.AddScoped<IRequestHandler<AtualizarReflexaoCommand, ValidationResult>, DiarioCommandHandler>();
+        services.AddScoped<IRequestHandler<ExcluirReflexaoCommand, ValidationResult>, DiarioCommandHandler>();
+
+        // Emocao
+        services.AddScoped<IEmocaoQueries, EmocaoQueries>();
+        services.AddScoped<IRequestHandler<AdicionarEmocaoCommand, ValidationResult>, DiarioCommandHandler>();
+        services.AddScoped<IRequestHandler<AtualizarEmocaoCommand, ValidationResult>, DiarioCommandHandler>();
+        services.AddScoped<IRequestHandler<ExcluirEmocaoCommand, ValidationResult>, DiarioCommandHandler>();
+        services.AddScoped<IRequestHandler<AssociarEmocaoNaReflexaoCommand, ValidationResult>, DiarioCommandHandler>();
+        services.AddScoped<IRequestHandler<RemoverEmocaoDaReflexaoCommand, ValidationResult>, DiarioCommandHandler>();
     }
 }

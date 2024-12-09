@@ -30,6 +30,75 @@ public class DiarioRepository : IDiarioRepository
                 .SetProperty(c => c.Usuario.Nome, usuario.Nome)
                 .SetProperty(c => c.Usuario.CaminhoFoto, usuario.CaminhoFoto));
     }
+
+    public void Adicionar(Reflexao reflexao)
+    {
+        _context.Reflexoes.Add(reflexao);
+    }
+
+    public void Atualizar(Reflexao reflexao)
+    {
+        _context.Reflexoes.Update(reflexao);
+    }
+
+    public void Excluir(Reflexao reflexao)
+    {
+        _context.Reflexoes.Remove(reflexao);
+    }
+    
+    public void Adicionar(Emocao emocao)
+    {
+        _context.Emocoes.Add(emocao);
+    }
+
+    public void Atualizar(Emocao emocao)
+    {
+        _context.Emocoes.Update(emocao);
+    }
+
+    public void Excluir(Emocao emocao)
+    {
+        _context.Emocoes.Remove(emocao);
+    }
+
+    public async Task<Reflexao> ObterReflexaoPorId(Guid id)
+    {
+        return await _context.Reflexoes
+            .Include(r => r.Emocao)
+            .FirstOrDefaultAsync(r => r.Id == id);
+    }
+
+    public async Task<IEnumerable<Reflexao>> ObterReflexoesPorUsuario(Guid usuarioId)
+    {
+        return await _context.Reflexoes
+            .Include(r => r.Emocao)
+            .Where(r => r.UsuarioId == usuarioId)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<Reflexao>> ObterTodasReflexoes()
+    {
+        return await _context.Reflexoes
+            .Include(r => r.Emocao)
+            .ToListAsync();
+    }
+
+    public async Task<Emocao> ObterEmocaoPorId(Guid id)
+    {
+        return await _context.Emocoes
+            .FirstOrDefaultAsync(e => e.Id == id);
+    }
+
+    public async Task<IEnumerable<Emocao>> ObterTodasEmocoes()
+    {
+        return await _context.Emocoes.ToListAsync();
+    }
+
+    public async Task<bool> ExisteEmocao(Guid id)
+    {
+        return await _context.Emocoes.AnyAsync(e => e.Id == id);
+    }
+
     public async Task<IEnumerable<Etiqueta>> ObterEtiquetasPorDiario(Guid diarioId)
     {
         var diario = await _context.Diarios
