@@ -5,12 +5,12 @@ Sistema de diário pessoal digital com gerenciamento de tarefas, desenvolvido em
 
 ## 🚀 Funcionalidades Principais
 
-### 👤 Usuários
+### 👤 Usuários (Finished)
 - [x] Cadastro e autenticação
 - [x] Perfil personalizado
 - [x] Upload de fotos
 
-### 📝 Diário (Almost Finished) - To Do
+### 📝 Diário (Finished) 
 - [x] Criação e edição de entradas
 - [x] Sistema de reflexões - WIP
 - [x] Categorização por etiquetas
