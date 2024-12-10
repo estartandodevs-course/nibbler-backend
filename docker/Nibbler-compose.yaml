@@ -4,7 +4,7 @@ services:
     container_name: api-nibbler
     build:
       context: ../src
-      dockerfile: ./WebAPI/Nibbler.WebApi/Dockerfile
+      dockerfile: ./WebAPI/Nibbler.WebAPI/Dockerfile
     restart: always
     ports:
       - "5226:5226"
