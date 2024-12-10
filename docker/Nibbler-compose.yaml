@@ -1,0 +1,13 @@
+services:
+  api-nibbler:
+    image: api-nibbler:1.0.0
+    container_name: api-nibbler
+    build:
+      context: ../src
+      dockerfile: ./WebApi/Nibbler.WebApi/Dockerfile
+    restart: always
+    ports:
+      - "5226:5226"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5226;http://+5226 
