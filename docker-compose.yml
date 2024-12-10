@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   nibbler-api:
     build:
@@ -30,10 +28,10 @@ services:
       - "1433:1433"
     healthcheck:
       test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "MinhaSenhaForte$" -Q "SELECT 1" -b -o /dev/null
-      interval: 10s
-      timeout: 3s
-      retries: 10
-      start_period: 10s
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
     volumes:
       - sqlserver-data:/var/opt/mssql
     networks:
