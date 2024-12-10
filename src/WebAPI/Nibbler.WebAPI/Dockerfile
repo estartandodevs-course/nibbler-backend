@@ -6,6 +6,16 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
+RUN apt-get update && \
+    apt-get install -y curl apt-transport-https gnupg && \
+    curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
+    curl https://packages.microsoft.com/config/ubuntu/20.04/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
+    apt-get update && \
+    ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev && \
+    echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 COPY ["src/WebAPI/Nibbler.WebAPI/Nibbler.WebAPI.csproj", "WebAPI/Nibbler.WebAPI/"]
 COPY ["src/Autenticacao/Nibbler.Autenticacao.App/Nibbler.Autenticacao.App.csproj", "Autenticacao/Nibbler.Autenticacao.App/"]
 COPY ["src/BuildingBlocks/Nibbler.Core/Nibbler.Core.csproj", "BuildingBlocks/Nibbler.Core/"]
