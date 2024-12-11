@@ -25,7 +25,7 @@ COPY ["./Usuarios/Nibbler.Usuario.Infra/Nibbler.Usuario.Infra.csproj", "Usuarios
 
 RUN dotnet restore "WebAPI/Nibbler.WebAPI/Nibbler.WebAPI.csproj"
 
-COPY src/. .
+COPY . .
 WORKDIR "WebAPI/Nibbler.WebAPI"
 RUN dotnet build "Nibbler.WebAPI.csproj" -c Release -o /app/build
 
