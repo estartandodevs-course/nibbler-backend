@@ -57,7 +57,7 @@ public static class SwaggerConfig
 
         app.UseSwaggerUI(c =>
         {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Forum Estartando Devs 2024");
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
             c.RoutePrefix = "swagger";
         });
     }
