@@ -5,7 +5,6 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-
 COPY ["./WebAPI/Nibbler.WebAPI/Nibbler.WebAPI.csproj", "WebAPI/Nibbler.WebAPI/"]
 COPY ["./Autenticacao/Nibbler.Autenticacao.App/Nibbler.Autenticacao.App.csproj", "Autenticacao/Nibbler.Autenticacao.App/"]
 
