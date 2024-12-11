@@ -34,7 +34,7 @@ spec:
               cpu: 1024m
               memory: 2048Mi
           ports:
-            - containerPort: 5225
+            - containerPort: 5226
               name: nibbler
       imagePullSecrets:
         - name: conectedurepo
@@ -58,14 +58,14 @@ spec:
     - name: nibbler
       protocol: TCP
       port: 80
-      targetPort: 5225
+      targetPort: 5226
 
 ---
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: kognitowebapi
+  name: nibblerwebapi
   namespace: estartandodevs
   annotations:
     nginx.org/client-max-body-size: 64m
