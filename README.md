@@ -133,6 +133,9 @@ cd nibbler
 # Restaure os pacotes
 dotnet restore
 
+# Setup certicado de  desenvolvimento
+dotnet dev-certs https --trust
+
 # Execute
 dotnet run --project src/WebAPI/Nibbler.WebAPI
 ```
