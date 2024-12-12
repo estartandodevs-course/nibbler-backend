@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Nibbler.Core.Mediator;
 using Nibbler.Core.Utilities;
@@ -11,6 +12,7 @@ namespace Nibbler.WebAPI.Controllers;
 
 [ApiController]
 [Route("api/usuario")]
+[EnableCors("PermissoesDeOrigem")]
 [Produces("application/json")]
 [Tags("Usuários")]
 public class UsuariosController : MainController

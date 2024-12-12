@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Nibbler.Core.Mediator;
 using Nibbler.Diario.app.Commands;
@@ -22,6 +23,7 @@ namespace Nibbler.WebAPI.Controllers;
 /// </remarks>
 [ApiController]
 [Route("api/reflexoes")]
+[EnableCors("PermissoesDeOrigem")]
 [Produces("application/json")]
 [Tags("Reflexões")]
 public class ReflexaoController : MainController

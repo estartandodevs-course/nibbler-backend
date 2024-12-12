@@ -1,4 +1,4 @@
-
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Nibbler.Core.Mediator;
 using Nibbler.Diario.App.Commands;
@@ -20,6 +20,7 @@ namespace Nibbler.WebAPI.Controllers;
 /// </remarks>
 [ApiController]
 [Route("api/diario/{diarioId}/entradas")]
+[EnableCors("PermissoesDeOrigem")]
 [Produces("application/json")]
 [Tags("Entradas")]
 public class EntradasController : MainController

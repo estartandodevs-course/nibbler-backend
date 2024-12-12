@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Nibbler.Core.Mediator;
 using Nibbler.Diario.app.Commands;
@@ -22,6 +23,7 @@ namespace Nibbler.WebAPI.Controllers
     /// facilitando sua busca e agrupamento.
     /// </remarks>
     [Route("api/etiquetas")]
+    [EnableCors("PermissoesDeOrigem")]
     [ApiController]
     [Produces("application/json")]
     [Tags("Etiquetas")]

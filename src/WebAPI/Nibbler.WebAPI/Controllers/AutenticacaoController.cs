@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -13,6 +14,7 @@ using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegiste
 namespace Nibbler.WebAPI.Controllers;
 
 [Route("api/identidade")]
+[EnableCors("PermissoesDeOrigem")]
 public class AutenticacaoController : MainController
 {
     private readonly SignInManager<IdentityUser> _signInManager;
