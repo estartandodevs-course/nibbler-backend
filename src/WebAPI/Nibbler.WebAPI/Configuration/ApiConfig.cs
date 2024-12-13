@@ -32,12 +32,12 @@ public static class ApiConfig
 
         services.AddCors(options =>
         {
-            options.AddPolicy(PermissoesDeOrigem,
+            options.AddPolicy("AllowAll",
                 builder =>
                 {
                     builder.AllowAnyOrigin()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
                 });
         });
     }

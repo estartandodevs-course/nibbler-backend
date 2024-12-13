@@ -12,7 +12,7 @@ namespace Nibbler.WebAPI.Controllers;
 
 [ApiController]
 [Route("api/usuario")]
-[EnableCors("PermissoesDeOrigem")]
+[EnableCors("AllowAll")]
 [Produces("application/json")]
 [Tags("Usuários")]
 public class UsuariosController : MainController

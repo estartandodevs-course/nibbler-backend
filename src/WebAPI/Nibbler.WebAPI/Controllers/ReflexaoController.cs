@@ -23,7 +23,7 @@ namespace Nibbler.WebAPI.Controllers;
 /// </remarks>
 [ApiController]
 [Route("api/reflexoes")]
-[EnableCors("PermissoesDeOrigem")]
+[EnableCors("AllowAll")]
 [Produces("application/json")]
 [Tags("Reflexões")]
 public class ReflexaoController : MainController

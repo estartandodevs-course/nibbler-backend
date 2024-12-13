@@ -21,7 +21,7 @@ builder.Services.AddMediatR(typeof(Program));
 
 var app = builder.Build();
 
-app.UseCors("PermissoesDeOrigem");
+app.UseCors("AllowAll");
 
 app.UseApiConfiguration();
 

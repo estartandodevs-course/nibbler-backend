@@ -24,7 +24,7 @@ namespace Nibbler.WebAPI.Controllers;
 /// </remarks>
 [ApiController]
 [Route("api/emocoes")]
-[EnableCors("PermissoesDeOrigem")]
+[EnableCors("AllowAll")]
 [Produces("application/json")]
 [Tags("Emoções")]
 public class EmocaoController : MainController

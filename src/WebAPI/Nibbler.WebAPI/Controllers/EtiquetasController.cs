@@ -23,7 +23,7 @@ namespace Nibbler.WebAPI.Controllers
     /// facilitando sua busca e agrupamento.
     /// </remarks>
     [Route("api/etiquetas")]
-    [EnableCors("PermissoesDeOrigem")]
+    [EnableCors("AllowAll")]
     [ApiController]
     [Produces("application/json")]
     [Tags("Etiquetas")]

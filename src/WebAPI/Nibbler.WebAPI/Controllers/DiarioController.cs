@@ -26,7 +26,7 @@ namespace Nibbler.WebAPI.Controllers
     /// </remarks>
     [ApiController]
     [Route("api/diario")]
-    [EnableCors("PermissoesDeOrigem")]
+    [EnableCors("AllowAll")]
     [Produces("application/json")]
     [Tags("Diários")]
     public class DiarioController : MainController

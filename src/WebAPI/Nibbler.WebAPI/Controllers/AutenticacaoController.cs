@@ -14,7 +14,7 @@ using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegiste
 namespace Nibbler.WebAPI.Controllers;
 
 [Route("api/identidade")]
-[EnableCors("PermissoesDeOrigem")]
+[EnableCors("AllowAll")]
 public class AutenticacaoController : MainController
 {
     private readonly SignInManager<IdentityUser> _signInManager;

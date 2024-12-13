@@ -20,7 +20,7 @@ namespace Nibbler.WebAPI.Controllers;
 /// </remarks>
 [ApiController]
 [Route("api/diario/{diarioId}/entradas")]
-[EnableCors("PermissoesDeOrigem")]
+[EnableCors("AllowAll")]
 [Produces("application/json")]
 [Tags("Entradas")]
 public class EntradasController : MainController
